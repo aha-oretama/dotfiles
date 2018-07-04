@@ -16,7 +16,8 @@ EOF
   exit 0
 }
 
-while getopts :f:h opt; do
+while getopts fh opt
+do
   case ${opt} in
     f)
       OVERWRITE=true
