@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 DOT_DIRECTORY="${HOME}/dotfiles"
 REMOTE_URL="https://github.com/aha-oretama/dotfiles.git"
