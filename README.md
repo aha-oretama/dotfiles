@@ -1,7 +1,7 @@
 # dotfiles
 
 Set up dotfiles in my mac.  
-It is highly recommended to use this shell after [MyMac](https://github.com/aha-oretama/MyMac)'s shell.
+It is highly recommended to use this `install.sh` after using [MyMac](https://github.com/aha-oretama/MyMac)'s `install.sh`.
 
 ## How to use
 ```bash
