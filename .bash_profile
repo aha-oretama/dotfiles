@@ -15,6 +15,8 @@ tarbz2Function()
 }
 alias tarbz2=tarbz2Function
 alias del-merged-branch="git branch --merged | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %"
+alias gh='cd $(ghq list -p | peco)'
+
 dockerit()
 {
   docker pull "$@"
