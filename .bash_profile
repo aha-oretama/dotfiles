@@ -1,5 +1,5 @@
 if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
+  source ~/.bashrc
 fi
 
 # bash utils
@@ -14,11 +14,21 @@ tarbz2Function()
   tar jcvf "$@"
 }
 alias tarbz2=tarbz2Function
+alias del-merged-branch="git branch --merged | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %"
+dockerit()
+{
+  docker pull "$@"
+  docker run -it --rm "$@" /bin/bash
+}
 
-export PATH=$HOME/IdeaProjects/utilShells:$PATH
+dockerita()
+{
+  docker pull "$@"
+  docker run -it --rm "$@" /bin/ash
+}
 
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# anyenv
+eval "$(anyenv init -)"
 
 # ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -31,3 +41,10 @@ eval "$(jenv init -)"
 # aws
 complete -C aws_completer aws
 
+# peco history
+peco-select-history() {
+    declare l=$(HISTTIMEFORMAT= history | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$READLINE_LINE")
+    READLINE_LINE="$l"
+    READLINE_POINT=${#l}
+}
+bind -x '"\C-r": peco-select-history'
