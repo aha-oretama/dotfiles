@@ -3,3 +3,6 @@
 # Please adapt and uncomment the following lines:
 	name = aha-oretama
 	email = sekine_y_529@msn.com 
+
+[core]
+excludesfile = ~/.gitignore
