@@ -1,3 +1,3 @@
-## goenv
-export PATH="$GOROOT/bin:$PATH"
+## Go (GOROOT is managed by goenv)
+export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
