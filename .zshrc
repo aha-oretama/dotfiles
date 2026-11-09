@@ -1,12 +1,17 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
+
 # bash utils
 alias ll='ls -al'
 alias del-merged-branch="git branch --merged | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %"
-alias gh='cd $(ghq list -p | peco)'
+alias gq='cd $(ghq list -p | peco)'
+
 # peco history
 peco-select-history() {
-    BUFFER=$(HISTTIMEFORMAT= history | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$READLINE_LINE")
+    BUFFER=$(fc -lnr 1 | sed 's/^[[:space:]]*//' | awk '!seen[$0]++' | peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle -R -c
+    zle reset-prompt
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
@@ -28,8 +33,5 @@ dockerita()
 alias kc='kubectx | peco | xargs kubectx'
 alias kn='kubens | peco | xargs kubens'
 
-# anyenv
+# anyenv (nodenv, goenv, ...)
 eval "$(anyenv init -)"
-
-# goenv
-eval "$(goenv init -)"

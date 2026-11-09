@@ -8,4 +8,4 @@
     excludesfile = ~/.gitignore
 
 [ghq]
-    root = /Users/aha-oretama/IdeaProjects
+    root = /Users/aha-oretama/vscode
